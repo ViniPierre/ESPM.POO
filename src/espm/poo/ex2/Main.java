@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        banco = new Banco();
+        banco = new Banco("ESPM Bank");
 
         Scanner scan = new Scanner(System.in);
         boolean exit = false;
@@ -16,7 +16,6 @@ public class Main {
         while (!exit) {
         System.out.print("ESPM> ");
         String input = scan.nextLine().trim().toLowerCase();
-        System.out.println(input);
 
             if ("".equals(input)){ 
             } else if ("exit".equals(input)) {
@@ -25,11 +24,14 @@ public class Main {
                 help();
             } else if ("list".equals(input)) {
                 list(banco);
-            } else {
+            } else if ("add".equals(input)) {
+                add(banco);
+            }  else {
                 System.err.println("Comando invalido!");
             }
         }
         System.out.println("Bye bye!");
+        scan.close();
     }
 
 private static void help() {
@@ -44,13 +46,26 @@ private static void help() {
 }
 
 private static void list(Banco banco) {
-    banco.getClientes();
-    for (Cliente c : banco.getClientes()) {
-        System.out.println(c);
+    banco.getClientes().forEach(c -> System.out.println(c.toString()));
     }
 
+private static void add(Banco banco) {
+    Cliente c = new Cliente();
 
+    Scanner scan = new Scanner(System.in);
+    System.out.print("Nome: ");
+    String nome = scan.nextLine();
+    System.out.print("CPF: ");
+    String cpf = scan.nextLine();
+    
+
+    c.setNome(nome);
+    c.setCpf(cpf);
+    
+    banco.add(c);
+    
 
     }
+
 }
 
