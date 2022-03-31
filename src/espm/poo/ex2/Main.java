@@ -14,6 +14,8 @@ public class Main {
         boolean exit = false;
 
         while (!exit) {
+            try {
+
         System.out.print("ESPM> ");
         String input = scan.nextLine().trim().toLowerCase();
 
@@ -26,14 +28,20 @@ public class Main {
                 list(banco);
             } else if ("add".equals(input)) {
                 add(banco);
-            }  else {
+            } else if ("find".equals(input)) {
+                throw new UnsupportedOperationException();
+            } else {
                 System.err.println("Comando invalido!");
             }
-        }
+        
+        } catch (UnsupportedOperationException e) {
+            e.printStackTrace();
+        }   
+    }
         System.out.println("Bye bye!");
         scan.close();
     }
-
+    
 private static void help() {
     System.out.println("ESPM Sistema de Clientes");
     System.out.println("------------------------");
