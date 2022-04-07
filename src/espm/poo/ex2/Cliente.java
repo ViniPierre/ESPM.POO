@@ -3,7 +3,7 @@ package src.espm.poo.ex2;
 public class Cliente {
     
     private String nome;
-    private String cpf;
+    
     private Conta conta;
 
     public Cliente() {
@@ -18,14 +18,6 @@ public class Cliente {
         return nome;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
     public Conta getConta() {
         return conta;
     }
@@ -33,7 +25,6 @@ public class Cliente {
     @Override
     public String toString() {
         return "---------------------\n Nome = " + nome + 
-                "\n CPF = " + cpf + 
                 "\n Conta = " + conta +
                 "\n--------------------- ";
 

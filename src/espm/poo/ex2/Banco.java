@@ -38,4 +38,7 @@ public class Banco {
         this.contas = contas;
     }
 
+    public void addCliente(Cliente pj2) {
+    }
+
 }
