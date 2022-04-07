@@ -68,10 +68,10 @@ private static void add(Banco banco) {
     
 
     c.setNome(nome);
-    c.setCpf(cpf);
-    
+    //To do: quebrou o codigo
+
     banco.add(c);
-    
+
 
     }
 
