@@ -54,24 +54,58 @@ private static void help() {
 }
 
 private static void list(Banco banco) {
-    banco.getClientes().forEach(c -> System.out.println(c.toString()));
+    banco.getClientes().forEach(c -> {
+        String tp = c instanceof PessoaFisica ? "f" : "j";
+        System.out.println(tp + " " + c);
+        });
     }
 
 private static void add(Banco banco) {
-    Cliente c = new Cliente();
 
     Scanner scan = new Scanner(System.in);
     System.out.print("Nome: ");
     String nome = scan.nextLine();
-    System.out.print("CPF: ");
-    String cpf = scan.nextLine();
-    
+
+    TipoPessoa tipoPessoa = inputTipoCliente();
+
+    Cliente c = null;
+    if ("f".equals(tipoPessoa)) {
+
+        System.out.print("CPF: ");
+        String cpf = scan.nextLine();
+
+        PessoaFisica pf = new PessoaFisica();
+        pf.setCpf(cpf);
+        c = pf;
+
+    } else {
+
+        System.out.print("CNPJ: ");
+        String cnpj = scan.nextLine();
+
+        PessoaJuridica pj = new PessoaJuridica();
+        pj.setCnpj(cnpj);
+        c = pj;
+    }
 
     c.setNome(nome);
-    //To do: quebrou o codigo
 
     banco.add(c);
 
+
+    }
+
+    private static TipoPessoa inputTipoCliente() {
+        Scanner scan = new Scanner(System.in);
+        String tp = "";
+        while (!tp.equals("j") && tp.equals("f")) {
+            System.out.print("Tipo de Cliente? [F|J]");
+            tp = scan.nextLine().toLowerCase();
+            if (!tp.equals("j") && tp.equals("f")) {
+                System.err.println("F: Física | J: Jurídica");
+            }
+        }
+        return tp.equals("f") ? TipoPessoa.Fisica : TipoPessoa.Juridica;
 
     }
 

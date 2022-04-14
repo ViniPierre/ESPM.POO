@@ -1,6 +1,6 @@
 package src.espm.poo.ex2;
 
-public class Cliente {
+public abstract class Cliente {
     
     private String nome;
     
@@ -24,7 +24,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "---------------------\n Nome = " + nome + 
+        return "\n---------------------\n Nome = " + nome + 
                 "\n Conta = " + conta +
                 "\n--------------------- ";
 
