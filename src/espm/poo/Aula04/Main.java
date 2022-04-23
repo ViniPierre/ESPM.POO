@@ -1,4 +1,4 @@
-package src.espm.poo.Aula04;
+package src.espm.poo.aula04;
 
 public class Main {
 

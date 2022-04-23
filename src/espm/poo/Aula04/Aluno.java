@@ -1,15 +1,15 @@
-package src.espm.poo.Aula04;
+package src.espm.poo.aula04;
 
 import java.util.Arrays;
 
 public class Aluno {
-    
-    String nome = null;
+
     Integer ra = null;
+    String nome = null;
 
     public Aluno(Integer ra, String nome) {
-        this.nome = nome;
         this.ra = ra;
+        this.nome = nome;        
     }
 
     public double media(double... notas) {
@@ -24,19 +24,20 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "{ra = " + ra + " nome = " + nome + "}";
-
+        return "{ra: " + ra +
+            ", nome: " + nome + "}";
     }
 
     @Override
     public boolean equals(Object obj) {
         return obj != null
-        && obj instanceof Aluno
-        && ra == ((Aluno) obj).ra;
+            && obj instanceof Aluno
+            && ra.equals(((Aluno) obj).ra);
     }
 
     @Override
     public int hashCode() {
         return ra.hashCode();
     }
+    
 }

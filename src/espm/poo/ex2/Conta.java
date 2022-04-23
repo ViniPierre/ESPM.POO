@@ -1,8 +1,7 @@
 package src.espm.poo.ex2;
 
 public class Conta {
-    
-    private int id;
+
     private Cliente cliente;
     private double saldo;
 
@@ -11,17 +10,23 @@ public class Conta {
     }
 
     public double getSaldo() {
-        return saldo;
+        return this.saldo;
     }
 
     public void sacar(double valor) {
-    if (this.saldo >= valor) {
-        this.saldo = this.saldo - valor;
+        if (this.saldo >= valor) {
+            this.saldo = this.saldo - valor;
         }
     }
+
     public void depositar(double valor) {
-    if (valor > 0) {
-        this.saldo = this.saldo + valor;
+        if (valor > 0) {
+            this.saldo = this.saldo + valor;
         }
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+    
 }
