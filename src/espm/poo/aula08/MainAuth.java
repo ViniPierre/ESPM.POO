@@ -2,6 +2,7 @@ package src.espm.poo.aula08;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class MainAuth {
 
@@ -20,6 +21,8 @@ public class MainAuth {
 
         for (Usuario u: lista) {
             System.out.println(u.getUsername());
+            Scanner scan = new Scanner(System.in);
+            
         }
     }
     
