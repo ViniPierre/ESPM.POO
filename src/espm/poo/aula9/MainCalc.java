@@ -1,5 +1,7 @@
 package src.espm.poo.aula9;
 
+import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainCalc {
@@ -15,10 +17,16 @@ while (true) {
         System.out.print("Número 2: ");
         double b = teclado.nextDouble();
 
-        System.out.print("operações [+ - / * ^ !]: ");
-        teclado.nextLine();
-        String op = teclado.nextLine();
-        
+        String op = null;
+        while (op == null) {
+            try {
+                op = input("operações [+ - / * ^ !]: ", "-","+","/","!","*","^");
+            } catch (ESPMException e) {
+                System.err.println("Entrada inválida " + e.getMessage());
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }
+
         if (op.equals("!")) {
             break;
         }
@@ -32,12 +40,31 @@ while (true) {
                 System.out.println(a + op + b + " = " + x);
             } catch (ArithmeticException e) {
                 e.printStackTrace();
-                System.out.println("Erro na operação:" + e.getMessage());
+                System.err.println("Erro na operação: " + e.getMessage());
+            } catch (InputMismatchException e) {
+                e.printStackTrace();
+                System.err.println("Erro na operação: " + e.getMessage());
+                teclado.nextLine();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Erro: " + e.getMessage());
+            } finally {
+                System.out.println("Operação ok ou exceção tratada!");
             }
         }
+    }
     
-    } 
-    
+    private static String input(String msg, String... possibles) throws ESPMException {
+        final Scanner teclado = new Scanner(System.in);
+        System.out.print(msg);
+        String line = teclado.nextLine().trim();
+        for (String item : Arrays.asList(possibles)) {
+            if (item.equals(line)) {
+                return item;
+            }
+        }
+        throw new ESPMException(line);
+    }
 
     private static double exp(double a, double b) {
         return Math.pow(a, b);
